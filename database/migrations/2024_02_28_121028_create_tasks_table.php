@@ -11,13 +11,14 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('status')->default(\App\Enums\Task\Status::Pending);
+            $table->timestamp('deadline_at');
             $table->timestamps();
         });
     }
@@ -27,7 +28,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('tasks');
     }

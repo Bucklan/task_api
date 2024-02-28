@@ -14,10 +14,12 @@ class TaskFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            //
+            'title' => $this->faker->sentence,
+            'description' => $this->faker->paragraph,
+            'deadline_at' => $this->faker->dateTimeBetween('now', '+1 year')->format('Y-m-d H:i:s'),
         ];
     }
 }

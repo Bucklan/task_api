@@ -14,9 +14,11 @@ class Task extends Model
         'title',
         'description',
         'status',
+        'deadline_at',
     ];
 
     protected $casts = [
         'status' => TaskStatus::class,
+        'deadline_at' => 'datetime',
     ];
 }
