@@ -6,7 +6,7 @@ use BenSampo\Enum\Enum;
 
 class Status extends Enum
 {
-    const Pending = 'pending';
-    const InProgress = 'in_progress';
-    const Completed = 'completed';
+    const pending = 'pending';
+    const in_progress = 'in_progress';
+    const completed = 'completed';
 }

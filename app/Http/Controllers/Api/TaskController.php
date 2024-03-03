@@ -9,23 +9,14 @@ use App\Models\Task;
 
 class TaskController extends Controller
 {
-
-    public function search(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
-    {
-//        dd(request('deadline'));
-        $tasks = Task::query();
-
-        if (request()->has('status') || request('deadline')) {
-            $tasks->where('status', request('status'))
-                ->orWhere('deadline_at','<=', request('deadline'));
-        }
-
-        return TaskResource::collection($tasks->get());
-    }
-
     public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
-        return TaskResource::collection(Task::get());
+        $tasks = Task::status(request('status'))
+            ->search(request('search'))
+            ->deadline(request('deadline'))
+            ->orderBy('deadline_at', 'asc')
+            ->paginate(10);
+        return TaskResource::collection($tasks);
     }
 
 

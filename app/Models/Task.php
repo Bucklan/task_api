@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use App\Enums\Task\Status as TaskStatus;
+use App\Models\Traits\TaskSearch;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    use HasFactory;
+    use HasFactory,TaskSearch;
 
     protected $fillable = [
         'title',

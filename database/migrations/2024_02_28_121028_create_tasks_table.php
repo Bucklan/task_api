@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->string('status')->default(\App\Enums\Task\Status::Pending);
+            $table->enum('type', \App\Enums\Task\Status::getValues())
+                ->default(\App\Enums\Task\Status::pending);
             $table->timestamp('deadline_at');
             $table->timestamps();
         });
